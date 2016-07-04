@@ -1,0 +1,36 @@
+{
+  "name": "GeneratedArt",
+  "version": "1.0.0",
+  "description": "Generated Art project",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "author": "Malin Antonsson",
+  "contributors": [
+    {
+      "name": "Malin Antonsson",
+      "email": "malin@malinantonsson.com"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-batch": "^1.0.5",
+    "gulp-file": "^0.2.0",
+    "gulp-folders": "^1.1.0",
+    "gulp-html-extend": "^1.1.6",
+    "gulp-ignore": "^2.0.1",
+    "gulp-image-resize": "^0.7.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-shell": "^0.5.1",
+    "gulp-svgmin": "^1.2.1",
+    "gulp-template": "^3.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "image-size": "^0.3.5",
+    "path": "^0.12.7",
+    "run-sequence": "^1.1.5",
+    "yargs": "^4.1.0"
+  }
+}
