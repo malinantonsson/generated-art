@@ -68,19 +68,28 @@
         }
     }
 
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     function mouseMove(evt) {
-        //prev : function E
-        //d = mouse event
-        evt = evt ? evt : window.event;
-        goToX = evt.clientX - outerWrapper.offsetLeft - canvasContainer.offsetLeft; 
-        goToY = evt.clientY - outerWrapper.offsetTop - canvasContainer.offsetTop;
+        
+        var width = getRandomInt(0, clientW);
+        var height = getRandomInt(0, clientH);
+
+        //evt = evt ? evt : window.event;
+        goToX = width - outerWrapper.offsetLeft - canvasContainer.offsetLeft; 
+        goToY = height - outerWrapper.offsetTop - canvasContainer.offsetTop;
     }
 
     function mouseDown() {
+
+
         //prev: function F
         //called once per click
         console.log('down');
         w = !0;
+        window.setTimeout(mouseUp, getRandomInt(0,2000));
         return !1
     }
 
@@ -99,10 +108,13 @@
         this.b = this.a = this.x = this.y = 0;
         this.size = 1;
     }
+    
+
+
     var endAngle = 2 * Math.PI, //prev: D, creates a full circle
         rectWidth = 1000, //prev: f
         rectHeight = 560, //prev: p
-        amount = 1, //prev z
+        amount = 300, //prev z
         bounce = 0.96, //prev: B
         particles = [], //prev: A
         mainCanvas, 
@@ -114,15 +126,28 @@
         x, y, 
         prevPosX, //prev: u
         prevPosY, //prev: v
-        w;
+        w,
+        clientW,
+        clientH;
+
+
 
     window.onload = function() { /*try{var nlng=navigator.language||navigator.userLanguage;var lng=nlng.substr(0, 2).toLowerCase();if(lng=="ru"||lng=="uk"||lng=="be")document.getElementById("flw").innerHTML=': <a href="http://www.twitter.com/spielzeugz" target="_blank">Twitter</a> / <a href="http://plus.google.com/116743952899287181520" target="_blank">G+</a> / <a href="http://vk.com/id266298870">VK</a>';}catch(e){}*/
         mainCanvas = document.getElementById("mainCanvas");
-        //console.log(mainCanvas);
+
+        clientW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        mainCanvas.style.width = clientW + 'px';
+        mainCanvas.style.height = clientH + 'px';
+
         if (mainCanvas.getContext) {
             outerWrapper = document.getElementById("outer");
-            //console.log(m);
+
             canvasContainer = document.getElementById("canvasContainer");
+            canvasContainer.style.width = clientW + 'px';
+            canvasContainer.style.height = clientH + 'px';
+
             canvas = mainCanvas.getContext("2d");
 
             for (var d = amount; d--;) {
@@ -134,14 +159,20 @@
                 particles[d] = particle;
                 //console.log(particle.a);
             }
+
+
+
             //console.log(particles);
             goToX = prevPosX = 0.5 * rectWidth;
             goToY = prevPosY = 0.5 * rectHeight;
-            document.onmousedown = mouseDown;
-            document.onmouseup = mouseUp;
-            document.onmousemove = mouseMove;
+            //document.onmousedown = mouseDown;
+            //document.onmouseup = mouseUp;
+            //document.onmousemove = mouseMove;
             //console.log(E);
+            //setInterval(moveParticles, 33);
             setInterval(moveParticles, 33);
+            setInterval(mouseMove, 1500);
+            setInterval(mouseDown, getRandomInt(2000,5000));
         } else document.getElementById("output").innerHTML =
             "Sorry, needs a recent version of Chrome, Firefox, Opera, Safari, or Internet Explorer 9."
     }

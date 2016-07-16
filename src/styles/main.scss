@@ -8,18 +8,18 @@ html, body {
 }
 #outer {
   position: absolute;
-  top: 50%;
-  left: 50%;
+/*   top: 50%;
+  left: 50%; */
   width: 1px;
   height: 1px;
   overflow: visible;
 }
 #canvasContainer {
   position: absolute;
-  width: 1000px;
+/*   width: 1000px;
   height: 560px;
   top: -280px;
-  left: -500px;
+  left: -500px; */
 }
 canvas {
   border: 1px solid #333333;
