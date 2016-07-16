@@ -3,9 +3,11 @@
         //console.log('function: c');
     
         canvas.globalCompositeOperation = "source-over";
-        canvas.fillStyle = "rgba(8,8,12,0.65)";
+        //canvas.fillStyle = "rgba(8,8,12,0.65)";
+
+        canvas.fillStyle = "rgba(255,255,255,0.65)";
         canvas.fillRect(0, 0, rectWidth, rectHeight);
-        canvas.globalCompositeOperation = "lighter";
+        canvas.globalCompositeOperation = "darker";
 
         x = goToX - prevPosX; 
         y = goToY - prevPosY; 
@@ -64,7 +66,7 @@
             canvas.beginPath();
             canvas.arc(parPosX, parPosY, circleRadius, 0, endAngle, !0);
             canvas.closePath();
-            canvas.fill()
+            canvas.fill();
         }
     }
 
@@ -90,14 +92,14 @@
         console.log('down');
         w = !0;
         window.setTimeout(mouseUp, getRandomInt(0,2000));
-        return !1
+        return !1;
     }
 
     function mouseUp() {
         //prev: function G
         //called once when on relese
         console.log('up');
-        return w = !1
+        return w = !1;
     }
 
     function createParticle() {
@@ -138,8 +140,8 @@
         clientW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-        mainCanvas.style.width = clientW + 'px';
-        mainCanvas.style.height = clientH + 'px';
+        mainCanvas.style.width = clientW - 5 + 'px';
+        mainCanvas.style.height = clientH - 5 + 'px';
 
         if (mainCanvas.getContext) {
             outerWrapper = document.getElementById("outer");
@@ -151,7 +153,7 @@
             canvas = mainCanvas.getContext("2d");
 
             for (var d = amount; d--;) {
-                var particle = new createParticle; //prev particle: l
+                var particle = new createParticle(); //prev particle: l
                 particle.x = 0.5 * rectWidth;
                 particle.y = 0.5 * rectHeight;
                 particle.a = 34 * Math.cos(d) * Math.random(); //bounce width
@@ -174,6 +176,6 @@
             setInterval(mouseMove, 1500);
             setInterval(mouseDown, getRandomInt(2000,5000));
         } else document.getElementById("output").innerHTML =
-            "Sorry, needs a recent version of Chrome, Firefox, Opera, Safari, or Internet Explorer 9."
-    }
+            "Sorry, needs a recent version of Chrome, Firefox, Opera, Safari, or Internet Explorer 9.";
+    };
 })();
