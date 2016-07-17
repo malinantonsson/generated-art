@@ -18,6 +18,7 @@
             Math.floor(255 * Math.random()) + "," + Math.floor(255 *
                 Math.random()) + ")";*/
         canvas.fillRect(0, 0, rectWidth, rectHeight);
+        //alpha > 0.5 ? canvas.globalCompositeOperation = "lighter" : canvas.globalCompositeOperation = "darker";
         canvas.globalCompositeOperation = "darker";
 
         x = goToX - prevPosX; 
@@ -129,8 +130,8 @@
         return stop = true;
     }
 
-/*    function fadeColour() {
-        //if(stop) return;
+    function fadeColour() {
+        if(stop) alpha = 0;
         canvas.globalAlpha = alpha;
 
         console.log(alpha);
@@ -146,7 +147,7 @@
         if(alpha >= 1) {
             alphaUp = false;
         }
-    }*/
+    }
 
     function changeColour() {
         colourR = Math.floor(255 * Math.random());
@@ -257,7 +258,7 @@
             //setInterval(fadeColour, 100);
             setInterval(changeColour, 10000);
             setInterval(changeSpeed, 5000);
-            //setInterval(fadeColour, 1000);
+            setInterval(fadeColour, 1000);
             
             
 
