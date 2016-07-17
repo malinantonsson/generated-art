@@ -7,9 +7,13 @@
         }
     
         canvas.globalCompositeOperation = "source-over";
-        //canvas.fillStyle = "rgba(8,8,12,0.65)";
+        canvas.fillStyle = "rgb(" + colourR + "," +
+            colourG + "," + colourG + ")";
+        /*alpha = alpha - 0.001;
+        console.log(alpha - 0.01);*/
+        console.log(canvas.fillStyle);
 
-        //canvas.fillStyle = "rgba(255,255,255,0.65)";
+       // canvas.fillStyle = "rgba(0,0,0,0.6 )";
        /* canvas.fillStyle = "rgb(" + Math.floor(255 * Math.random()) + "," +
             Math.floor(255 * Math.random()) + "," + Math.floor(255 *
                 Math.random()) + ")";*/
@@ -120,6 +124,24 @@
         return stop = true;
     }
 
+    /*function fadeColour() {
+        colourR = colourR + 1;
+        colourG = colourG - 1;
+        colourB = colourB + 1 ;
+        alpha = 0.95;
+        return colour = "rgb(" + colourR + "," +
+            colourG + "," + colourG + ")";
+    }*/
+
+    function changeColour() {
+        colourR = Math.floor(255 * Math.random());
+        colourG = Math.floor(255 * Math.random());
+        colourB = Math.floor(255 * Math.random());
+        alpha = 0.95;
+        return colour = "rgb(" + colourR + "," +
+            colourG + "," + colourG + ")";
+    }
+
     function startMovement() {
         //prev: function G
         //called once when on relese
@@ -157,7 +179,12 @@
         clientW,
         clientH,
         movingParticles,
-        stop;
+        stop,
+        colour,
+        colourR = Math.floor(255 * Math.random()),
+        colourG = Math.floor(255 * Math.random()),
+        colourB = Math.floor(255 * Math.random()),
+        alpha = 0.65;
 
 
 
@@ -206,6 +233,8 @@
             setInterval(mouseDown, getRandomInt(2000,5000));
 
             setInterval(stopMovement, 10000);
+            //setInterval(fadeColour, 100);
+            setInterval(changeColour, 10000);
             
 
 
