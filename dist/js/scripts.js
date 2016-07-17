@@ -1,11 +1,18 @@
 (function() {
     function moveParticles() { //prev: function C
         //console.log('function: c');
+        //
+        if (stop) {
+            return;
+        }
     
         canvas.globalCompositeOperation = "source-over";
         //canvas.fillStyle = "rgba(8,8,12,0.65)";
 
-        canvas.fillStyle = "rgba(255,255,255,0.65)";
+        //canvas.fillStyle = "rgba(255,255,255,0.65)";
+       /* canvas.fillStyle = "rgb(" + Math.floor(255 * Math.random()) + "," +
+            Math.floor(255 * Math.random()) + "," + Math.floor(255 *
+                Math.random()) + ")";*/
         canvas.fillRect(0, 0, rectWidth, rectHeight);
         canvas.globalCompositeOperation = "darker";
 
@@ -89,7 +96,7 @@
 
         //prev: function F
         //called once per click
-        console.log('down');
+        //console.log('down');
         w = !0;
         window.setTimeout(mouseUp, getRandomInt(0,2000));
         return !1;
@@ -98,8 +105,26 @@
     function mouseUp() {
         //prev: function G
         //called once when on relese
-        console.log('up');
+        //console.log('up');
         return w = !1;
+    }
+
+    function stopMovement() {
+
+
+        //prev: function F
+        //called once per click
+        //console.log('down');
+        //w = !0;
+        window.setTimeout(startMovement, getRandomInt(1000,2000));
+        return stop = true;
+    }
+
+    function startMovement() {
+        //prev: function G
+        //called once when on relese
+        //console.log('up');
+        return stop = false;
     }
 
     function createParticle() {
@@ -130,7 +155,9 @@
         prevPosY, //prev: v
         w,
         clientW,
-        clientH;
+        clientH,
+        movingParticles,
+        stop;
 
 
 
@@ -172,10 +199,17 @@
             //document.onmousemove = mouseMove;
             //console.log(E);
             //setInterval(moveParticles, 33);
-            setInterval(moveParticles, 33);
+            //
+            //
+            movingParticles = setInterval(moveParticles, 33);
             setInterval(mouseMove, 1500);
             setInterval(mouseDown, getRandomInt(2000,5000));
+
+            setInterval(stopMovement, 10000);
+            
+
+
         } else document.getElementById("output").innerHTML =
             "Sorry, needs a recent version of Chrome, Firefox, Opera, Safari, or Internet Explorer 9.";
-    };
+    }
 })();
