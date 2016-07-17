@@ -11,7 +11,7 @@
             colourG + "," + colourG + ")";
         /*alpha = alpha - 0.001;
         console.log(alpha - 0.01);*/
-        console.log(canvas.fillStyle);
+        //console.log(canvas.fillStyle);
 
        // canvas.fillStyle = "rgba(0,0,0,0.6 )";
        /* canvas.fillStyle = "rgb(" + Math.floor(255 * Math.random()) + "," +
@@ -34,7 +34,8 @@
                 b = h.b,
                 distanceX = parPosX - goToX, //prev: c //turns minus when particle goes beyond cursor
                 distanceY = parPosY - goToY,
-                gravity = Math.sqrt(distanceX * distanceX + distanceY * distanceY) || 0.001, //prev: g
+                gravity = Math.sqrt(distanceX * distanceX + distanceY * distanceY) * speed || 0.001, //prev: g
+
                 distanceX = distanceX / gravity,
                 distanceY = distanceY / gravity,
                 circleRadius,
@@ -81,6 +82,10 @@
         }
     }
 
+    function getRandomFloat(min,max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -124,20 +129,30 @@
         return stop = true;
     }
 
-    /*function fadeColour() {
-        colourR = colourR + 1;
-        colourG = colourG - 1;
-        colourB = colourB + 1 ;
-        alpha = 0.95;
-        return colour = "rgb(" + colourR + "," +
-            colourG + "," + colourG + ")";
+/*    function fadeColour() {
+        //if(stop) return;
+        canvas.globalAlpha = alpha;
+
+        console.log(alpha);
+        if (alphaUp) {
+            alpha = alpha + 0.1; 
+        } else {
+            alpha = alpha - 0.1;
+        }
+
+        if(alpha <= 0) {
+            alphaUp = true;
+        }
+        if(alpha >= 1) {
+            alphaUp = false;
+        }
     }*/
 
     function changeColour() {
         colourR = Math.floor(255 * Math.random());
         colourG = Math.floor(255 * Math.random());
         colourB = Math.floor(255 * Math.random());
-        alpha = 0.95;
+        //alpha = 0.95;
         return colour = "rgb(" + colourR + "," +
             colourG + "," + colourG + ")";
     }
@@ -147,6 +162,10 @@
         //called once when on relese
         //console.log('up');
         return stop = false;
+    }
+
+    function changeSpeed() {
+        speed = getRandomFloat(0.95, 5);
     }
 
     function createParticle() {
@@ -184,7 +203,9 @@
         colourR = Math.floor(255 * Math.random()),
         colourG = Math.floor(255 * Math.random()),
         colourB = Math.floor(255 * Math.random()),
-        alpha = 0.65;
+        alpha = 1,
+        speed = 1,
+        alphaUp = false;
 
 
 
@@ -235,6 +256,9 @@
             setInterval(stopMovement, 10000);
             //setInterval(fadeColour, 100);
             setInterval(changeColour, 10000);
+            setInterval(changeSpeed, 5000);
+            //setInterval(fadeColour, 1000);
+            
             
 
 
